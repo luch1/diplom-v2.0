@@ -1,30 +1,15 @@
-/*!
- * Materialize v0.100.2 (http://materializecss.com)
- * Copyright 2014-2017 Materialize
- * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
- */
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// Check for jQuery.
+
 if (typeof jQuery === 'undefined') {
-  // Check if require is a defined function.
   if (typeof require === 'function') {
     jQuery = $ = require('jquery');
-    // Else use the dollar sign alias.
   } else {
     jQuery = $;
   }
 }
-; /*
-  * jQuery Easing v1.4.0 - http://gsgd.co.uk/sandbox/jquery/easing/
-  * Open source under the BSD License.
-  * Copyright © 2008 George McGinley Smith
-  * All rights reserved.
-  * https://raw.github.com/gdsmith/jquery-easing/master/LICENSE
-  */
-
 (function (factory) {
   if (typeof define === "function" && define.amd) {
     define(['jquery'], function ($) {
@@ -36,8 +21,6 @@ if (typeof jQuery === 'undefined') {
     factory(jQuery);
   }
 })(function ($) {
-
-  // Preserve the original jQuery "swing" easing as "jswing"
   $.easing['jswing'] = $.easing['swing'];
 
   var pow = Math.pow,
@@ -51,7 +34,6 @@ if (typeof jQuery === 'undefined') {
       c4 = 2 * PI / 3,
       c5 = 2 * PI / 4.5;
 
-  // x is the fraction of animation progress, in the range 0..1
   function bounceOut(x) {
     var n1 = 7.5625,
         d1 = 2.75;
@@ -1248,7 +1230,6 @@ jQuery.Velocity ? console.log("Velocity is already loaded. You may be needlessly
     };
   }(Hammer.Manager.prototype.emit);
 });
-; // Required for Meteor package, the use of window prevents export by Meteor
 (function (window) {
   if (window.Package) {
     Materialize = {};
@@ -1264,16 +1245,6 @@ if (typeof exports !== 'undefined' && !exports.nodeType) {
   exports.default = Materialize;
 }
 
-/*
- * raf.js
- * https://github.com/ngryman/raf.js
- *
- * original requestAnimationFrame polyfill by Erik Möller
- * inspired from paul_irish gist and post
- *
- * Copyright (c) 2013 ngryman
- * Licensed under the MIT license.
- */
 (function (window) {
   var lastTime = 0,
       vendors = ['webkit', 'moz'],
@@ -1281,14 +1252,11 @@ if (typeof exports !== 'undefined' && !exports.nodeType) {
       cancelAnimationFrame = window.cancelAnimationFrame,
       i = vendors.length;
 
-  // try to un-prefix existing raf
   while (--i >= 0 && !requestAnimationFrame) {
     requestAnimationFrame = window[vendors[i] + 'RequestAnimationFrame'];
     cancelAnimationFrame = window[vendors[i] + 'CancelRequestAnimationFrame'];
   }
 
-  // polyfill with setTimeout fallback
-  // heavily inspired from @darius gist mod: https://gist.github.com/paulirish/1579671#comment-837945
   if (!requestAnimationFrame || !cancelAnimationFrame) {
     requestAnimationFrame = function (callback) {
       var now = +Date.now(),
@@ -1301,16 +1269,11 @@ if (typeof exports !== 'undefined' && !exports.nodeType) {
     cancelAnimationFrame = clearTimeout;
   }
 
-  // export to window
   window.requestAnimationFrame = requestAnimationFrame;
   window.cancelAnimationFrame = cancelAnimationFrame;
 })(window);
 
-/**
- * Generate approximated selector string for a jQuery object
- * @param {jQuery} obj  jQuery object to be parsed
- * @returns {string}
- */
+
 Materialize.objectSelectorString = function (obj) {
   var tagStr = obj.prop('tagName') || '';
   var idStr = obj.attr('id') || '';
@@ -1318,7 +1281,7 @@ Materialize.objectSelectorString = function (obj) {
   return (tagStr + idStr + classStr).replace(/\s/g, '');
 };
 
-// Unique Random ID
+
 Materialize.guid = function () {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -1328,11 +1291,6 @@ Materialize.guid = function () {
   };
 }();
 
-/**
- * Escapes hash from special characters
- * @param {string} hash  String returned from this.hash
- * @returns {string}
- */
 Materialize.escapeHash = function (hash) {
   return hash.replace(/(:|\.|\[|\]|,|=)/g, "\\$1");
 };
@@ -1350,28 +1308,11 @@ Materialize.elementOrParentIsFixed = function (element) {
   return isFixed;
 };
 
-/**
- * Get time in ms
- * @license https://raw.github.com/jashkenas/underscore/master/LICENSE
- * @type {function}
- * @return {number}
- */
+
 var getTime = Date.now || function () {
   return new Date().getTime();
 };
 
-/**
- * Returns a function, that, when invoked, will only be triggered at most once
- * during a given window of time. Normally, the throttled function will run
- * as much as it can, without ever going more than once per `wait` duration;
- * but if you'd like to disable the execution on the leading edge, pass
- * `{leading: false}`. To disable execution on the trailing edge, ditto.
- * @license https://raw.github.com/jashkenas/underscore/master/LICENSE
- * @param {function} func
- * @param {number} wait
- * @param {Object=} options
- * @returns {Function}
- */
 Materialize.throttle = function (func, wait, options) {
   var context, args, result;
   var timeout = null;
@@ -1402,8 +1343,6 @@ Materialize.throttle = function (func, wait, options) {
   };
 };
 
-// Velocity has conflicts when loaded with jQuery, this will check for it
-// First, check if in noConflict mode
 var Vel;
 if (jQuery) {
   Vel = jQuery.Velocity;
@@ -1437,11 +1376,6 @@ if (Vel) {
 
       var collapsible_type = $this.data("collapsible");
 
-      /****************
-      Helper Functions
-      ****************/
-
-      // Accordion Open
       function accordionOpen(object) {
         $panel_headers = $this.find('> li > .collapsible-header');
         if (object.hasClass('active')) {

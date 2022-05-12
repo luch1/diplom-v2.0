@@ -10,14 +10,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-REDIS_HOST = 'redis-11783.c257.us-east-1-3.ec2.cloud.redislabs.com'
-REDIS_PORT = '11783'
-
-CELERY_BROKER_URL = 'redis://:MIaaMOmUXfj8E7fKZZcl8jIr6FvNccp5@' + REDIS_HOST + ':' + REDIS_PORT + '/0'
-CELERY_RESULT_BACKEND = 'redis://:MIaaMOmUXfj8E7fKZZcl8jIr6FvNccp5@' + REDIS_HOST + ':' + REDIS_PORT + '/0'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+[]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
